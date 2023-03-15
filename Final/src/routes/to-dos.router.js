@@ -79,12 +79,38 @@ TodosRouter.delete("/to-do/:id", async function (request, response) {
     }
 });
 
-TodosRouter.patch("/to-do", async function (request, response) {
+TodosRouter.patch("/to-do/:id", async function (request, response) {
     try {
+        const {id} = request.params;
+        const db = await getDB();
+    
+        const todoExists = await db.get(
+            'SELECT * FROM todos WHERE id = ?',
+            id
+        );
+        if (!todoExists){
+            return response.status(404).send({message: "To Do not Found"});
+        }
+
+        const {title, description, isDone: is_done} = request.body;
+        await db.run(
+            `UPDATE todos
+            SET title = ?, description = ?, is_done = ?
+            WHERE id=?
+        `, 
+        title || todoExists.title, 
+        description || todoExists.description, 
+        is_done !== undefined ? is_done : todoExists.todoExists, 
+        id
+        );
+        await db.close();
         
+        response.send({message: "To Do Update"})
+
     } catch (error) {
+        console.error(error)
         response.status(500).send({
-            message: "Something went wrong trying to get to dos", 
+            message: "Something went wrong trying to update to dos", 
             error,
         });
     }
