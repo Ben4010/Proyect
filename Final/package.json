@@ -1,0 +1,35 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "Last Proyect",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ben4010/Fundamentals-Final-Proyect.git"
+  },
+  "keywords": [
+    "Node.JS",
+    "JavaScript",
+    "SQLite",
+    "Express.js"
+  ],
+  "author": "Ben4010",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ben4010/Fundamentals-Final-Proyect/issues"
+  },
+  "homepage": "https://github.com/Ben4010/Fundamentals-Final-Proyect#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
